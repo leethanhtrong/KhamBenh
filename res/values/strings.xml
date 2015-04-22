@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Niềm tin vào y đức</string>
+    <string name="tvMajor">Chuyên khoa</string>
+    <string name="tvDoctor">Bác sĩ</string>
+    <string name="tvSymptom">Mô tả triệu chứng</string>
+    <string name="btnContinute">Tiếp tục</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_info">Thông tin</string>
+    <string name="tvEmail">Email</string>
+    <string name="btnCheck">Kiểm tra</string>
+    <string name="title_activity_register_fragment"></string>
+    <string name="tvRegisterName">Họ tên</string>
+    <string name="tvRegisterAddress">Địa chỉ</string>
+    <string name="tvRegisterPhone">Điện thoại</string>
+    <string name="tvRegisterGender">Giới tính</string>
+    <string name="tvRegisterBirthDay">Ngày sinh</string>
+    <string name="tvRegisterEmail">Email</string>
+    <string name="tvTTSubmitName">Họ tên</string>
+    <string name="tvTTSubmitAddress">Địa chỉ</string>
+    <string name="tvTTSubmitPhone">Điện thoại</string>
+    <string name="tvTTSubmitGender">Giới tính</string>
+    <string name="tvTTSubmitEmail">Email</string>
+    <string name="tvTTSubmitBirthDay">Ngày sinh</string>
+    <string name="btnRegister">Đăng ký</string>
+    <string name="btnSubmit">Xác nhận</string>
+    <string name="title_activity_submit_fragment"></string>
+    <string name="hello_world">Hello world!</string>
+    <string name="welcome">This is a DialogFragment.</string>
+    <string name="action_today">Hôm nay</string>
+    <string name="action_day_view">Theo ngày</string>
+    <string name="action_three_day_view">Theo 3 ngày</string>
+    <string name="action_week_view">Theo tuần</string>
+    <string name="tvSelectedTime">Thời gian hẹn</string>
+
+    <string-array name="gender">
+        <item>Nam</item>
+        <item>Nữ</item>
+    </string-array>
+
+    <string name="title_activity_result">ResultActivity</string>
+    <string name="title_activity_week_view_fragment">WeekViewFragment</string>
+
+</resources>
