@@ -377,13 +377,21 @@ public class DataFragment extends Fragment implements
 			int theMonth = event.getStartTime().get(Calendar.MONTH) + 1;
 			int theDay = event.getStartTime().get(Calendar.DAY_OF_MONTH);
 			int theYear = event.getStartTime().get(Calendar.YEAR);
-			RequestParams params = new RequestParams();
+			String selectedDate=theYear + "-" + theMonth + "-" + theDay + " "
+					+ startHour + ":00:00";
+			Toast.makeText(
+					getActivity().getBaseContext(),
+					selectedDate,
+					Toast.LENGTH_LONG).show();
+			/*RequestParams params = new RequestParams();
 			params.put("MaBS", this.MaBS);
 			params.put("NgayGio", theYear + "-" + theMonth + "-" + theDay + " "
 					+ startHour + ":00:00");
 			params.put("Email", "danglienminh93@gmail.com");
 			params.put("TrieuChung", "si da roi");
+			
 			AsyncHttpClient client = new AsyncHttpClient();
+			
 			client.post(con.getUrl() + "/anroidWebservice/khambenh/them",
 					params, new AsyncHttpResponseHandler() {
 						// When the response returned by REST has Http response
@@ -396,7 +404,6 @@ public class DataFragment extends Fragment implements
 									getActivity().getApplicationContext(),
 									response, Toast.LENGTH_LONG).show();
 							tvSelectedTime.setText(response);
-							Time = tvSelectedTime.getText().toString();
 						}
 
 						// When the response returned by REST has Http response
@@ -429,7 +436,7 @@ public class DataFragment extends Fragment implements
 										Toast.LENGTH_LONG).show();
 							}
 						}
-					});
+					});*/
 		}
 
 	}
