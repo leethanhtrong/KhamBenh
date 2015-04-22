@@ -2,7 +2,6 @@ package com.example.khambenh;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.http.NameValuePair;
@@ -33,8 +32,10 @@ import android.widget.Toast;
 public class RegisterFragment extends Fragment {
 	Connect con = new Connect();
 	JsonParseClass jsonParse = new JsonParseClass();
-	final String urlRegister = con.getUrl() + "/anroidWebservice/KhamBenhService/register.php";
-	private String urlFinish = con.getUrl() + "/anroidWebservice/KhamBenhService/finish.php";
+	final String urlRegister = con.getUrl()
+			+ "/anroidWebservice/KhamBenhService/register.php";
+	private String urlFinish = con.getUrl()
+			+ "/anroidWebservice/KhamBenhService/finish.php";
 	String successTag = null;
 	private static final String TAG_SUCCESS = "success";
 	EditText etName;
@@ -44,8 +45,7 @@ public class RegisterFragment extends Fragment {
 	Spinner spGender;
 	EditText etAddress;
 	Button btnRegister;
-	String Name, Email, Phone, Address, Gender, BirthDay, MaBS, Symtom;
-	Date Time;
+	String Name, Email, Phone, Address, Gender, BirthDay, MaBS, Symtom, Time;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,6 +54,7 @@ public class RegisterFragment extends Fragment {
 		Email = getArguments().getString("Email");
 		MaBS = getArguments().getString("Doctor");
 		Symtom = getArguments().getString("Symtom");
+		Time = getArguments().getString("Time");
 		etName = (EditText) v.findViewById(R.id.etRegisterName);
 		etPhone = (EditText) v.findViewById(R.id.etRegisterPhone);
 		tvEmail = (TextView) v.findViewById(R.id.tvRegisterEmail);
@@ -201,7 +202,7 @@ public class RegisterFragment extends Fragment {
 			validateParams.add(new BasicNameValuePair("Email", Email));
 			validateParams.add(new BasicNameValuePair("MaBS", MaBS));
 			validateParams.add(new BasicNameValuePair("TrieuChung", Symtom));
-			// validateParams.add(new BasicNameValuePair("time", Time));
+			validateParams.add(new BasicNameValuePair("ThoiGian", Time));
 			jObject = jsonParse.makeHttpRequest(urlFinish, "POST",
 					validateParams);
 			try {

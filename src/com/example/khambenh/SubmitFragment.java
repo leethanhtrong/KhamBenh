@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.http.HttpResponse;
@@ -38,8 +37,10 @@ public class SubmitFragment extends Fragment {
 	private static final String TAG_SUCCESS = "success";
 	private String jsonResult;
 	JsonParseClass jsonParse = new JsonParseClass();
-	private String urlSubmit = con.getUrl() + "/anroidWebservice/KhamBenhService/submit.php";
-	private String urlFinish = con.getUrl() + "/anroidWebservice/KhamBenhService/finish.php";
+	private String urlSubmit = con.getUrl()
+			+ "/anroidWebservice/KhamBenhService/submit.php";
+	private String urlFinish = con.getUrl()
+			+ "/anroidWebservice/KhamBenhService/finish.php";
 	TextView tvName;
 	TextView tvPhone;
 	TextView tvEmail;
@@ -47,8 +48,7 @@ public class SubmitFragment extends Fragment {
 	TextView tvGender;
 	TextView tvAddress;
 	Button btnSubmit;
-	String Email, MaBS, Symtom;
-	Date Time;
+	String Email, MaBS, Symtom, Time;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,6 +57,7 @@ public class SubmitFragment extends Fragment {
 		Email = getArguments().getString("Email");
 		MaBS = getArguments().getString("Doctor");
 		Symtom = getArguments().getString("Symtom");
+		Time = getArguments().getString("Time");
 		tvName = (TextView) v.findViewById(R.id.tvSubmitName);
 		tvPhone = (TextView) v.findViewById(R.id.tvSubmitPhone);
 		tvEmail = (TextView) v.findViewById(R.id.tvSubmitEmail);
@@ -161,7 +162,7 @@ public class SubmitFragment extends Fragment {
 			validateParams.add(new BasicNameValuePair("Email", Email));
 			validateParams.add(new BasicNameValuePair("MaBS", MaBS));
 			validateParams.add(new BasicNameValuePair("TrieuChung", Symtom));
-			// validateParams.add(new BasicNameValuePair("time", Phone));
+			validateParams.add(new BasicNameValuePair("ThoiGian", Time));
 			jObject = jsonParse.makeHttpRequest(urlFinish, "POST",
 					validateParams);
 			try {

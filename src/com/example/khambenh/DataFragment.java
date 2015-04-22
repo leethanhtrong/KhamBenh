@@ -396,6 +396,7 @@ public class DataFragment extends Fragment implements
 									getActivity().getApplicationContext(),
 									response, Toast.LENGTH_LONG).show();
 							tvSelectedTime.setText(response);
+							Time = tvSelectedTime.getText().toString();
 						}
 
 						// When the response returned by REST has Http response

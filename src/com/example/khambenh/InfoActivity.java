@@ -35,7 +35,7 @@ public class InfoActivity extends Activity {
 	JsonParseClass jsonParse = new JsonParseClass();
 	private static final String TAG_SUCCESS = "success";
 	private Button btnCheckMail;
-	String email, MaBS, Symtom;
+	String Email, MaBS, Symtom, Time;
 	private GestureDetector gestureDetector;
 
 	@Override
@@ -46,6 +46,7 @@ public class InfoActivity extends Activity {
 		Bundle bun = getIntent().getExtras();
 		MaBS = bun.getString("Doctor");
 		Symtom = bun.getString("Symtom");
+		Time = bun.getString("Time");
 		etEmail = (EditText) findViewById(R.id.etEmail);
 		btnCheckMail = (Button) findViewById(R.id.btnCheck);
 		btnCheckMail.setOnClickListener(new OnClickListener() {
@@ -114,7 +115,7 @@ public class InfoActivity extends Activity {
 					InfoActivity.this.onRightSwipe();
 				}
 			} catch (Exception e) {
-				Log.e("YourActivity", "Error on gestures");
+				Log.e("InfoActivity", "Error on gestures");
 			}
 			return false;
 		}
@@ -130,9 +131,9 @@ public class InfoActivity extends Activity {
 
 		@Override
 		protected String doInBackground(String... params) {
-			email = etEmail.getText().toString().trim();
+			Email = etEmail.getText().toString().trim();
 			List<NameValuePair> validateParams = new ArrayList<NameValuePair>();
-			validateParams.add(new BasicNameValuePair("email", email));
+			validateParams.add(new BasicNameValuePair("email", Email));
 			jObject = jsonParse.makeHttpRequest(url, "POST", validateParams);
 			try {
 				successTag = jObject.getString(TAG_SUCCESS);
@@ -146,9 +147,10 @@ public class InfoActivity extends Activity {
 		protected void onPostExecute(String result) {
 			super.onPostExecute(result);
 			Bundle bundle = new Bundle();
-			bundle.putString("Email", email);
+			bundle.putString("Email", Email);
 			bundle.putString("Doctor", MaBS);
 			bundle.putString("Symtom", Symtom);
+			bundle.putString("Time", Time);
 			if (successTag.equalsIgnoreCase("1")) {
 				SubmitFragment submitFragment = new SubmitFragment();
 				submitFragment.setArguments(bundle);
