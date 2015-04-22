@@ -383,6 +383,7 @@ public class DataFragment extends Fragment implements
 					getActivity().getBaseContext(),
 					selectedDate,
 					Toast.LENGTH_LONG).show();
+			//oh shit shit shit
 			/*RequestParams params = new RequestParams();
 			params.put("MaBS", this.MaBS);
 			params.put("NgayGio", theYear + "-" + theMonth + "-" + theDay + " "
