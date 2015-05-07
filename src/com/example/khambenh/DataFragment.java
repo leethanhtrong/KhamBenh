@@ -44,7 +44,6 @@ import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 public class DataFragment extends Fragment implements
 		WeekView.MonthChangeListener, WeekView.EventClickListener,
@@ -68,6 +67,7 @@ public class DataFragment extends Fragment implements
 	String MaCK;
 	String MaBS;
 	String Time;
+	String Symptom;
 	MajorAdapter Madapter;
 	View parentContainer;
 	DataFragment dataFragment;
@@ -112,10 +112,6 @@ public class DataFragment extends Fragment implements
 
 				MaBS = ((TextView) v.findViewById(R.id.tvDoctorMaBS)).getText()
 						.toString();
-				/*
-				 * Toast.makeText(getActivity().getBaseContext(), MaBS,
-				 * Toast.LENGTH_LONG).show();
-				 */
 				invokeWS(MaBS);
 			}
 
@@ -128,19 +124,27 @@ public class DataFragment extends Fragment implements
 		btnSubmit.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (etSymptom.getText().toString().trim().length() == 0) {
+				Time = tvSelectedTime.getText().toString();
+				if (Time.trim().length() == 0) {
 					Toast.makeText(getActivity(),
-							"Vui lòng nhập triệu chứng bạn mắc phải",
+							"Vui lòng chọn thời gian hẹn bác sĩ",
 							Toast.LENGTH_SHORT).show();
 				} else {
-					Bundle bun = new Bundle();
-					bun.putString("Doctor", MaBS);
-					bun.putString("Time", Time);
-					bun.putString("Symtom", etSymptom.getText().toString());
-					Intent intent = new Intent(getActivity(),
-							InfoActivity.class);
-					intent.putExtras(bun);
-					startActivity(intent);
+					Symptom = etSymptom.getText().toString();
+					if (Symptom.trim().length() == 0) {
+						Toast.makeText(getActivity(),
+								"Vui lòng nhập triệu chứng bạn mắc phải",
+								Toast.LENGTH_SHORT).show();
+					} else {
+						Bundle bun = new Bundle();
+						bun.putString("MaBS", MaBS);
+						bun.putString("Time", Time);
+						bun.putString("Symtom", Symptom);
+						Intent intent = new Intent(getActivity(),
+								InfoActivity.class);
+						intent.putExtras(bun);
+						startActivity(intent);
+					}
 				}
 			}
 		});
@@ -379,42 +383,7 @@ public class DataFragment extends Fragment implements
 			int theYear = event.getStartTime().get(Calendar.YEAR);
 			String selectedDate = theYear + "-" + theMonth + "-" + theDay + " "
 					+ startHour + ":00:00";
-			Toast.makeText(getActivity().getBaseContext(), selectedDate,
-					Toast.LENGTH_LONG).show();
-			// oh shit shit shit
-			/*
-			 * RequestParams params = new RequestParams(); params.put("MaBS",
-			 * this.MaBS); params.put("NgayGio", theYear + "-" + theMonth + "-"
-			 * + theDay + " " + startHour + ":00:00"); params.put("Email",
-			 * "danglienminh93@gmail.com"); params.put("TrieuChung",
-			 * "si da roi");
-			 * 
-			 * AsyncHttpClient client = new AsyncHttpClient();
-			 * 
-			 * client.post(con.getUrl() + "/anroidWebservice/khambenh/them",
-			 * params, new AsyncHttpResponseHandler() { // When the response
-			 * returned by REST has Http response // code // '200'
-			 * 
-			 * @Override public void onSuccess(String response) { // Hide
-			 * Progress Dialog Toast.makeText(
-			 * getActivity().getApplicationContext(), response,
-			 * Toast.LENGTH_LONG).show(); tvSelectedTime.setText(response); } //
-			 * When the response returned by REST has Http response // code //
-			 * other than '200'
-			 * 
-			 * @Override public void onFailure(int statusCode, Throwable error,
-			 * String content) { // Hide Progress Dialog // When Http response
-			 * code is '404' if (statusCode == 404) { Toast.makeText(
-			 * getActivity().getApplicationContext(),
-			 * "Requested resource not found", Toast.LENGTH_LONG).show(); } //
-			 * When Http response code is '500' else if (statusCode == 500) {
-			 * Toast.makeText( getActivity().getApplicationContext(),
-			 * "Something went wrong at server end", Toast.LENGTH_LONG).show();
-			 * } // When Http response code other than 404, 500 else {
-			 * Toast.makeText( getActivity().getApplicationContext(),
-			 * "Unexpected Error occcured! [Most common Error: Device might not be connected to Internet or remote server is not up and running]"
-			 * , Toast.LENGTH_LONG).show(); } } });
-			 */
+			tvSelectedTime.setText(selectedDate);
 		}
 
 	}

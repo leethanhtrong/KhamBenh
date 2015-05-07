@@ -148,7 +148,7 @@ public class InfoActivity extends Activity {
 			super.onPostExecute(result);
 			Bundle bundle = new Bundle();
 			bundle.putString("Email", Email);
-			bundle.putString("Doctor", MaBS);
+			bundle.putString("MaBS", MaBS);
 			bundle.putString("Symtom", Symtom);
 			bundle.putString("Time", Time);
 			if (successTag.equalsIgnoreCase("1")) {
