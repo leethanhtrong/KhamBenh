@@ -173,7 +173,7 @@ public class RegisterFragment extends Fragment {
 			super.onPostExecute(result);
 			if (successTag.equalsIgnoreCase("1")) {
 				Toast.makeText(getActivity().getBaseContext(),
-						"Đăng ký thành công", Toast.LENGTH_SHORT).show();
+						"Thêm mới thành công", Toast.LENGTH_SHORT).show();
 				// thêm cuộc hẹn
 				// Intent intent = new Intent(InfoActivity.this,
 				// MainActivity.class);
@@ -182,7 +182,7 @@ public class RegisterFragment extends Fragment {
 				// finish();
 			} else {
 				Toast.makeText(getActivity().getBaseContext(),
-						"Đăng ký thất bại", Toast.LENGTH_LONG).show();
+						"Thêm mới thất bại", Toast.LENGTH_LONG).show();
 			}
 		}
 	}
