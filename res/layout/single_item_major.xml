@@ -14,6 +14,7 @@
         android:id="@+id/tvMajorTenCK"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp" />
+        android:textColor="@android:color/black"
+        android:textSize="19sp" />
 
 </LinearLayout>

@@ -12,51 +12,69 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/tvRegisterName" />
+        android:text="@string/tvRegisterName"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="19sp" />
 
     <EditText
         android:id="@+id/etRegisterName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text" />
+        android:inputType="text"
+        android:textColor="@android:color/black"
+        android:textSize="25sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/tvRegisterAddress" />
+        android:text="@string/tvRegisterAddress"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="19sp" />
 
     <EditText
         android:id="@+id/etRegisterAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text" />
+        android:inputType="text"
+        android:textColor="@android:color/black"
+        android:textSize="25sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/tvRegisterPhone" />
+        android:text="@string/tvRegisterPhone"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="19sp" />
 
     <EditText
         android:id="@+id/etRegisterPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPhonetic" />
+        android:inputType="phone|number"
+        android:textColor="@android:color/black"
+        android:textSize="25sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/tvRegisterBirthDay" />
+        android:text="@string/tvRegisterBirthDay"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="19sp" />
 
     <EditText
         android:id="@+id/etRegisterBirthDay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text" />
+        android:inputType="text"
+        android:textColor="@android:color/black"
+        android:textSize="19sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/tvRegisterGender" />
+        android:text="@string/tvRegisterGender"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="19sp" />
 
     <Spinner
         android:id="@+id/spRegisterGender"
@@ -67,17 +85,23 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/tvRegisterEmail" />
+        android:text="@string/tvRegisterEmail"
+        android:textColor="@android:color/black"
+        android:textSize="19sp"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/tvRegisterEmail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/btnRegister"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@android:color/holo_blue_dark"
         android:text="@string/btnRegister" />
 
 </LinearLayout>
