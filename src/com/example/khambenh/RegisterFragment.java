@@ -29,16 +29,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.RequestParams;
-
 public class RegisterFragment extends Fragment {
 	Connect con = new Connect();
 	JsonParseClass jsonParse = new JsonParseClass();
 	final String urlRegister = con.getUrl()
 			+ "/anroidWebservice/KhamBenhService/register.php";
-	private String urlFinish = con.getUrl()
-			+ "/anroidWebservice/KhamBenhService/finish.php";
 	String successTag = null;
 	private static final String TAG_SUCCESS = "success";
 	EditText etName;
@@ -177,81 +172,10 @@ public class RegisterFragment extends Fragment {
 			if (successTag.equalsIgnoreCase("1")) {
 				Toast.makeText(getActivity().getBaseContext(),
 						"Thêm mới thành công", Toast.LENGTH_SHORT).show();
-				  RequestParams params = new RequestParams(); params.put("MaBS",
-				  MaBS); params.put("NgayGio", Time.substring(0,3) + "-" + Time.substring(5, 6) + "-"
-				  + Time.substring(8, 9) + " " + startHour + ":00:00"); params.put("Email",
-				  Email); params.put("TrieuChung",
-				  Symtom);
-				  AsyncHttpClient client = new AsyncHttpClient();
-				  client.post(con.getUrl() + "/anroidWebservice/khambenh/them",
-				  params, new AsyncHttpResponseHandler() { 
-				  @Override public void onSuccess(String response) {  
-				  Toast.makeText(
-				  getActivity().getApplicationContext(), response,
-				  Toast.LENGTH_LONG).show(); tvSelectedTime.setText(response); } //
-				  When the response returned by REST has Http response // code //
-				  other than '200
-				  
-				  @Override public void onFailure(int statusCode, Throwable error,
-				  String content) { 
-				  if (statusCode == 404) { Toast.makeText(
-				  getActivity().getApplicationContext(),
-				 "Requested resource not found", Toast.LENGTH_LONG).show(); } 
-				  else if (statusCode == 500) {
-				  Toast.makeText( getActivity().getApplicationContext(),
-				  "Something went wrong at server end", Toast.LENGTH_LONG).show();
-				  } 
-				  else {
-				  Toast.makeText( getActivity().getApplicationContext(),
-				  "Unexpected Error occcured! [Most common Error: Device might not be connected to Internet or remote server is not up and running]"
-				  , Toast.LENGTH_LONG).show(); } }} );
-				 
 			} else {
 				Toast.makeText(getActivity().getBaseContext(),
 						"Thêm mới thất bại", Toast.LENGTH_LONG).show();
 			}
 		}
 	}
-
-	public class Finish extends AsyncTask<String, String, String> {
-		JSONObject jObject;
-
-		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-		}
-
-		@Override
-		protected String doInBackground(String... params) {
-			List<NameValuePair> validateParams = new ArrayList<NameValuePair>(
-					10);
-			validateParams.add(new BasicNameValuePair("Email", Email));
-			validateParams.add(new BasicNameValuePair("MaBS", MaBS));
-			validateParams.add(new BasicNameValuePair("TrieuChung", Symtom));
-			validateParams.add(new BasicNameValuePair("ThoiGian", Time));
-			jObject = jsonParse.makeHttpRequest(urlFinish, "POST",
-					validateParams);
-			try {
-				successTag = jObject.getString(TAG_SUCCESS);
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-			return successTag;
-		}
-
-		@Override
-		protected void onPostExecute(String result) {
-			super.onPostExecute(result);
-			if (successTag.equalsIgnoreCase("1")) {
-				Toast.makeText(getActivity().getBaseContext(),
-						"Đăng ký thành công", Toast.LENGTH_SHORT).show();
-				Finish finish = new Finish();
-				finish.execute();
-			} else {
-				Toast.makeText(getActivity().getBaseContext(),
-						"Đăng ký thất bại", Toast.LENGTH_LONG).show();
-			}
-		}
-	}
-
 }

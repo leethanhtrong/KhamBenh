@@ -39,8 +39,6 @@ public class SubmitFragment extends Fragment {
 	JsonParseClass jsonParse = new JsonParseClass();
 	private String urlSubmit = con.getUrl()
 			+ "/anroidWebservice/KhamBenhService/submit.php";
-	private String urlFinish = con.getUrl()
-			+ "/anroidWebservice/KhamBenhService/finish.php";
 	TextView tvName;
 	TextView tvPhone;
 	TextView tvEmail;
@@ -69,8 +67,7 @@ public class SubmitFragment extends Fragment {
 		btnSubmit.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Finish finish = new Finish();
-				finish.execute();
+				// thêm cuộc hẹn tại đây
 			};
 		});
 		accessWebService();
@@ -146,44 +143,4 @@ public class SubmitFragment extends Fragment {
 			e.printStackTrace();
 		}
 	}
-
-	public class Finish extends AsyncTask<String, String, String> {
-		JSONObject jObject;
-
-		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-		}
-
-		@Override
-		protected String doInBackground(String... params) {
-			List<NameValuePair> validateParams = new ArrayList<NameValuePair>(
-					10);
-			validateParams.add(new BasicNameValuePair("Email", Email));
-			validateParams.add(new BasicNameValuePair("MaBS", MaBS));
-			validateParams.add(new BasicNameValuePair("TrieuChung", Symtom));
-			validateParams.add(new BasicNameValuePair("ThoiGian", Time));
-			jObject = jsonParse.makeHttpRequest(urlFinish, "POST",
-					validateParams);
-			try {
-				successTag = jObject.getString(TAG_SUCCESS);
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-			return successTag;
-		}
-
-		@Override
-		protected void onPostExecute(String result) {
-			super.onPostExecute(result);
-			if (successTag.equalsIgnoreCase("1")) {
-				Toast.makeText(getActivity().getBaseContext(),
-						"Hẹn thành công", Toast.LENGTH_SHORT).show();
-			} else {
-				Toast.makeText(getActivity().getBaseContext(), "Hẹn thất bại",
-						Toast.LENGTH_LONG).show();
-			}
-		}
-	}
-
 }

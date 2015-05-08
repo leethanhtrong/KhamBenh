@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Niềm tin vào y đức</string>
-    <string name="tvMajor">Chuyên khoa</string>
+    <string name="tvMajor">Chuyên khoa </string>
     <string name="tvDoctor">Bác sĩ</string>
     <string name="tvSymptom">Mô tả triệu chứng</string>
     <string name="btnContinute">Tiếp tục</string>
