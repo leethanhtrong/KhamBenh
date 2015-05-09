@@ -34,6 +34,7 @@
     <string name="action_week_view">Theo tuần</string>
     <string name="tvSelectedTime">Thời gian hẹn</string>
     <string name="error">Không có kết nối!</string>
+    <string name="btnRetry">Thử lại</string>
 
     <string-array name="gender">
         <item>Nam</item>
