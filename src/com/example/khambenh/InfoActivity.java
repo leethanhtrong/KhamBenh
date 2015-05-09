@@ -36,7 +36,7 @@ public class InfoActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_info);
 		Bundle bun = getIntent().getExtras();
-		MaBS = bun.getString("Doctor");
+		MaBS = bun.getString("MaBS");
 		Symtom = bun.getString("Symtom");
 		Time = bun.getString("Time");
 		etEmail = (EditText) findViewById(R.id.etEmail);

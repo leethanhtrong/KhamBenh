@@ -9,10 +9,13 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.InputType;
@@ -29,6 +32,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
 public class RegisterFragment extends Fragment {
 	Connect con = new Connect();
 	JsonParseClass jsonParse = new JsonParseClass();
@@ -44,13 +51,15 @@ public class RegisterFragment extends Fragment {
 	EditText etAddress;
 	Button btnRegister;
 	String Name, Email, Phone, Address, Gender, BirthDay, MaBS, Symtom, Time;
+	private PendingIntent pendingIntent;
+	private AlarmManager alarmMgr;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.register_fragment, container, false);
 		Email = getArguments().getString("Email");
-		MaBS = getArguments().getString("Doctor");
+		MaBS = getArguments().getString("MaBS");
 		Symtom = getArguments().getString("Symtom");
 		Time = getArguments().getString("Time");
 		etName = (EditText) v.findViewById(R.id.etRegisterName);
@@ -170,6 +179,75 @@ public class RegisterFragment extends Fragment {
 		protected void onPostExecute(String result) {
 			super.onPostExecute(result);
 			if (successTag.equalsIgnoreCase("1")) {
+				RequestParams params = new RequestParams();
+				params.put("MaBS", MaBS);
+				params.put("NgayGio", Time);
+				params.put("Email", Email);
+				params.put("TrieuChung", Symtom);
+				AsyncHttpClient client = new AsyncHttpClient();
+				client.post(
+						"http://minhhunglaw.com/anroidWebservice/khambenh/them",
+						params, new AsyncHttpResponseHandler() {
+							@Override
+							public void onSuccess(String response) {
+								// Hide Progress Dialog
+								Toast.makeText(getActivity().getBaseContext(),
+										"Thành công " + response,
+										Toast.LENGTH_LONG).show();
+							}
+
+							// When the response returned by REST has Http
+							// response code
+							// other than '200'
+							@Override
+							public void onFailure(int statusCode,
+									Throwable error, String content) {
+								// Hide Progress Dialog
+
+								// When Http response code is '404'
+								if (statusCode == 404) {
+									Toast.makeText(
+											getActivity().getBaseContext(),
+											"Requested resource not found",
+											Toast.LENGTH_SHORT).show();
+								}
+								// When Http response code is '500'
+								else if (statusCode == 500) {
+									Toast.makeText(
+											getActivity().getBaseContext(),
+											"Something went wrong at server end",
+											Toast.LENGTH_SHORT).show();
+								}
+								// When Http response code other than 404, 500
+								else {
+									Toast.makeText(
+											getActivity().getBaseContext(),
+											"Unexpected Error occcured! [Most common Error: Device might not be connected to Internet or remote server is not up and running]",
+											Toast.LENGTH_SHORT).show();
+								}
+							}
+						});
+				Calendar calendar = Calendar.getInstance();
+				calendar.set(Calendar.MONTH,
+						Integer.parseInt(Time.substring(5, 6)));
+				calendar.set(Calendar.YEAR,
+						Integer.parseInt(Time.substring(0, 3)));
+				calendar.set(Calendar.DAY_OF_MONTH,
+						Integer.parseInt(Time.substring(8, 9)));
+				calendar.set(Calendar.HOUR_OF_DAY,
+						Integer.parseInt(Time.substring(11, 12)));
+				calendar.set(Calendar.MINUTE,
+						Integer.parseInt(Time.substring(14, 15)));
+				calendar.set(Calendar.SECOND, 0);
+				calendar.set(Calendar.AM_PM, Calendar.PM);
+				Intent myIntent = new Intent(getActivity(),
+						KhamBenhReceiver.class);
+				pendingIntent = PendingIntent.getBroadcast(getActivity(), 0,
+						myIntent, 0);
+				AlarmManager alarmManager = (AlarmManager) (getActivity()
+						.getSystemService(getActivity().ALARM_SERVICE));
+				alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(),
+						pendingIntent);
 				Toast.makeText(getActivity().getBaseContext(),
 						"Thêm mới thành công", Toast.LENGTH_SHORT).show();
 			} else {

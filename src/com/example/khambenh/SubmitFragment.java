@@ -31,6 +31,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
 public class SubmitFragment extends Fragment {
 	Connect con = new Connect();
 	String successTag = null;
@@ -52,7 +56,7 @@ public class SubmitFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.submit_fragment, container, false);
 		Email = getArguments().getString("Email");
-		MaBS = getArguments().getString("Doctor");
+		MaBS = getArguments().getString("MaBS");
 		Symtom = getArguments().getString("Symtom");
 		Time = getArguments().getString("Time");
 		tvName = (TextView) v.findViewById(R.id.tvSubmitName);
@@ -66,9 +70,54 @@ public class SubmitFragment extends Fragment {
 		btnSubmit.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// thêm cuộc hẹn tại đây
-				Toast.makeText(getActivity().getBaseContext(),
-						"Nè dog", Toast.LENGTH_SHORT).show();
+				RequestParams params = new RequestParams();
+				params.put("MaBS", MaBS);
+				params.put("NgayGio", Time);
+				params.put("Email", Email);
+				params.put("TrieuChung", Symtom);
+				AsyncHttpClient client = new AsyncHttpClient();
+				client.post(
+						"http://minhhunglaw.com/anroidWebservice/khambenh/them",
+						params, new AsyncHttpResponseHandler() {
+							@Override
+							public void onSuccess(String response) {
+								// Hide Progress Dialog
+								Toast.makeText(getActivity().getBaseContext(),
+										"Thành công " + response,
+										Toast.LENGTH_LONG).show();
+							}
+
+							// When the response returned by REST has Http
+							// response code
+							// other than '200'
+							@Override
+							public void onFailure(int statusCode,
+									Throwable error, String content) {
+								// Hide Progress Dialog
+
+								// When Http response code is '404'
+								if (statusCode == 404) {
+									Toast.makeText(
+											getActivity().getBaseContext(),
+											"Requested resource not found",
+											Toast.LENGTH_SHORT).show();
+								}
+								// When Http response code is '500'
+								else if (statusCode == 500) {
+									Toast.makeText(
+											getActivity().getBaseContext(),
+											"Something went wrong at server end",
+											Toast.LENGTH_SHORT).show();
+								}
+								// When Http response code other than 404, 500
+								else {
+									Toast.makeText(
+											getActivity().getBaseContext(),
+											"Unexpected Error occcured! [Most common Error: Device might not be connected to Internet or remote server is not up and running]",
+											Toast.LENGTH_SHORT).show();
+								}
+							}
+						});
 			};
 		});
 		accessWebService();
