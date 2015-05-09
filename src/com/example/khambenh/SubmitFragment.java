@@ -34,7 +34,6 @@ import android.widget.Toast;
 public class SubmitFragment extends Fragment {
 	Connect con = new Connect();
 	String successTag = null;
-	private static final String TAG_SUCCESS = "success";
 	private String jsonResult;
 	JsonParseClass jsonParse = new JsonParseClass();
 	private String urlSubmit = con.getUrl()
@@ -68,6 +67,8 @@ public class SubmitFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				// thêm cuộc hẹn tại đây
+				Toast.makeText(getActivity().getBaseContext(),
+						"Nè dog", Toast.LENGTH_SHORT).show();
 			};
 		});
 		accessWebService();
