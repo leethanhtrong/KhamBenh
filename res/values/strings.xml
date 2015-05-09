@@ -41,5 +41,6 @@
 
     <string name="title_activity_result">ResultActivity</string>
     <string name="title_activity_week_view_fragment">WeekViewFragment</string>
+    <string name="title_activity_first">FirstActivity</string>
 
 </resources>

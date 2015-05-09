@@ -144,6 +144,8 @@ public class DataFragment extends Fragment implements
 								InfoActivity.class);
 						intent.putExtras(bun);
 						startActivity(intent);
+						getActivity().overridePendingTransition(
+								R.anim.slide_in_right, R.anim.slide_out_left);
 					}
 				}
 			}
