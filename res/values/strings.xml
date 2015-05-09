@@ -33,6 +33,7 @@
     <string name="action_three_day_view">Theo 3 ngày</string>
     <string name="action_week_view">Theo tuần</string>
     <string name="tvSelectedTime">Thời gian hẹn</string>
+    <string name="error">Không có kết nối!</string>
 
     <string-array name="gender">
         <item>Nam</item>
@@ -42,5 +43,6 @@
     <string name="title_activity_result">ResultActivity</string>
     <string name="title_activity_week_view_fragment">WeekViewFragment</string>
     <string name="title_activity_first">FirstActivity</string>
+    <string name="title_activity_error_fragment">ErrorFragment</string>
 
 </resources>

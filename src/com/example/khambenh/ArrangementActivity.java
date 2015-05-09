@@ -7,7 +7,6 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.widget.Toast;
 
 public class ArrangementActivity extends Activity {
 
@@ -24,8 +23,11 @@ public class ArrangementActivity extends Activity {
 			ft.replace(R.id.content_frame, dataFragment);
 			ft.commit();
 		} else {
-			Toast.makeText(ArrangementActivity.this, "Không có kết nối!",
-					Toast.LENGTH_LONG).show();
+			ErrorFragment errorFragment = new ErrorFragment();
+			FragmentManager fragmentManager = getFragmentManager();
+			FragmentTransaction ft = fragmentManager.beginTransaction();
+			ft.replace(R.id.content_frame, errorFragment);
+			ft.commit();
 		}
 	}
 

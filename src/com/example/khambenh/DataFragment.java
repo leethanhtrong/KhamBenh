@@ -85,7 +85,6 @@ public class DataFragment extends Fragment implements
 		View v = inflater.inflate(R.layout.data_fragment, container, false);
 		parentContainer = inflater.inflate(R.layout.data_fragment, container,
 				false);
-		;
 		dataFragment = this;
 		accessWebServiceMajor();
 		etSymptom = (EditText) v.findViewById(R.id.etSymptom);
