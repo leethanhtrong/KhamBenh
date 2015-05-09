@@ -16,16 +16,14 @@ public class ArrangementActivity extends Activity {
 		setContentView(R.layout.activity_arrangement);
 		ConnectivityManager cn = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo nf = cn.getActiveNetworkInfo();
+		FragmentManager fragmentManager = getFragmentManager();
+		FragmentTransaction ft = fragmentManager.beginTransaction();
 		if (nf != null && nf.isConnected() == true) {
 			DataFragment dataFragment = new DataFragment();
-			FragmentManager fragmentManager = getFragmentManager();
-			FragmentTransaction ft = fragmentManager.beginTransaction();
 			ft.replace(R.id.content_frame, dataFragment);
 			ft.commit();
 		} else {
 			ErrorFragment errorFragment = new ErrorFragment();
-			FragmentManager fragmentManager = getFragmentManager();
-			FragmentTransaction ft = fragmentManager.beginTransaction();
 			ft.replace(R.id.content_frame, errorFragment);
 			ft.commit();
 		}
