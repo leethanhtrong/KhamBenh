@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.apache.http.HttpResponse;
@@ -20,7 +21,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.AlarmManager;
 import android.app.Fragment;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -50,6 +54,7 @@ public class SubmitFragment extends Fragment {
 	TextView tvAddress;
 	Button btnSubmit;
 	String Email, MaBS, Symtom, Time;
+	private PendingIntent pendingIntent;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -83,7 +88,7 @@ public class SubmitFragment extends Fragment {
 							public void onSuccess(String response) {
 								// Hide Progress Dialog
 								Toast.makeText(getActivity().getBaseContext(),
-										"Thành công " + response,
+										"Thêm cuộc hẹn hành công " + response,
 										Toast.LENGTH_LONG).show();
 							}
 
@@ -118,6 +123,27 @@ public class SubmitFragment extends Fragment {
 								}
 							}
 						});
+				Calendar calendar = Calendar.getInstance();
+				calendar.set(Calendar.MONTH,
+						Integer.parseInt(Time.substring(5, 6)));
+				calendar.set(Calendar.YEAR,
+						Integer.parseInt(Time.substring(0, 3)));
+				calendar.set(Calendar.DAY_OF_MONTH,
+						Integer.parseInt(Time.substring(8, 9)));
+				calendar.set(Calendar.HOUR_OF_DAY,
+						Integer.parseInt(Time.substring(11, 12)));
+				calendar.set(Calendar.MINUTE,
+						Integer.parseInt(Time.substring(14, 15)));
+				calendar.set(Calendar.SECOND, 0);
+				calendar.set(Calendar.AM_PM, Calendar.PM);
+				Intent myIntent = new Intent(getActivity(),
+						KhamBenhReceiver.class);
+				pendingIntent = PendingIntent.getBroadcast(getActivity(), 0,
+						myIntent, 0);
+				AlarmManager alarmManager = (AlarmManager) (getActivity()
+						.getSystemService(getActivity().ALARM_SERVICE));
+				alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(),
+						pendingIntent);
 			};
 		});
 		accessWebService();

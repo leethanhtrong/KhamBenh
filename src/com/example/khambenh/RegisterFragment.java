@@ -52,7 +52,6 @@ public class RegisterFragment extends Fragment {
 	Button btnRegister;
 	String Name, Email, Phone, Address, Gender, BirthDay, MaBS, Symtom, Time;
 	private PendingIntent pendingIntent;
-	private AlarmManager alarmMgr;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -192,7 +191,7 @@ public class RegisterFragment extends Fragment {
 							public void onSuccess(String response) {
 								// Hide Progress Dialog
 								Toast.makeText(getActivity().getBaseContext(),
-										"Thành công " + response,
+										"Thêm cuộc hẹn thành công " + response,
 										Toast.LENGTH_LONG).show();
 							}
 
