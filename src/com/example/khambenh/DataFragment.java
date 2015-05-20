@@ -34,6 +34,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
@@ -89,7 +90,7 @@ public class DataFragment extends Fragment implements
 		accessWebServiceMajor();
 		etSymptom = (EditText) v.findViewById(R.id.etSymptom);
 		tvSelectedTime = (TextView) v.findViewById(R.id.tvSelectedTime);
-		//tvSelectedTime.clearFocus();
+		
 		spMajor = (Spinner) v.findViewById(R.id.spMajor);
 		spMajor.setOnItemSelectedListener(new OnItemSelectedListener() {
 			@Override
@@ -154,6 +155,8 @@ public class DataFragment extends Fragment implements
 		mWeekView.setOnEventClickListener(this);
 		mWeekView.setMonthChangeListener(this);
 		mWeekView.setEventLongPressListener(this);
+		//getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)‌​;
+		getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 		return v;
 	}
 

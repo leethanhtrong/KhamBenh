@@ -124,8 +124,8 @@ public class SubmitFragment extends Fragment {
 
 				long when = calendar.getTimeInMillis();
 
-				Toast.makeText(getActivity().getBaseContext(),
-						Long.toString(when), Toast.LENGTH_LONG).show();
+				/*Toast.makeText(getActivity().getBaseContext(),
+						Long.toString(when), Toast.LENGTH_LONG).show();*/
 				Intent intent = new Intent(getActivity(),
 						KhamBenhReceiver.class);
 				PendingIntent pendingIntent = PendingIntent.getBroadcast(
@@ -133,7 +133,7 @@ public class SubmitFragment extends Fragment {
 				AlarmManager alarmManager = (AlarmManager) getActivity()
 						.getSystemService(Context.ALARM_SERVICE);
 				alarmManager.set(AlarmManager.RTC_WAKEUP,
-						System.currentTimeMillis() + (0 * 1000), pendingIntent);
+						System.currentTimeMillis() + (10 * 1000), pendingIntent);
 			};
 		});
 		accessWebService();

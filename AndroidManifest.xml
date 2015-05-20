@@ -40,8 +40,7 @@
         </activity>
         <activity
             android:name=".FirstActivity"
-            android:label="@string/title_activity_first"
-            android:windowSoftInputMode="stateHidden" >
+            android:label="@string/title_activity_first">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
