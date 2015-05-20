@@ -124,7 +124,7 @@ public class SubmitFragment extends Fragment {
 						Integer.parseInt(Time.substring(3, 5)));
 				calendar.set(Calendar.YEAR,
 						Integer.parseInt(Time.substring(6, 10)));
-				//if(Integer.parseInt(Time.substring(3, 5)==calendar.get())
+				//if(Integer.parseInt(Time.substring(3, 5)==calendar.get())//
 				calendar.set(Calendar.DAY_OF_MONTH,
 						Integer.parseInt(Time.substring(0, 2))-1);
 				calendar.set(Calendar.HOUR,
