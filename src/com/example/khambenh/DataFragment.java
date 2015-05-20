@@ -89,6 +89,7 @@ public class DataFragment extends Fragment implements
 		accessWebServiceMajor();
 		etSymptom = (EditText) v.findViewById(R.id.etSymptom);
 		tvSelectedTime = (TextView) v.findViewById(R.id.tvSelectedTime);
+		//tvSelectedTime.clearFocus();
 		spMajor = (Spinner) v.findViewById(R.id.spMajor);
 		spMajor.setOnItemSelectedListener(new OnItemSelectedListener() {
 			@Override
@@ -208,6 +209,7 @@ public class DataFragment extends Fragment implements
 	public void getMajor() {
 		ArrayList<Major> results = new ArrayList<Major>();
 		try {
+			
 			JSONObject jsonResponse = new JSONObject(jsonResult);
 			JSONArray jsonMainNode = jsonResponse.optJSONArray("chuyenkhoa");
 			Major major;
@@ -377,13 +379,21 @@ public class DataFragment extends Fragment implements
 		if (event.getColor() == getResources().getColor(R.color.event_color_02)) {
 			Toast.makeText(getActivity(), "Full", Toast.LENGTH_SHORT).show();
 		} else {
+			String dayAdded0="",monthAdded0="";
 			int startHour = event.getStartTime().get(Calendar.HOUR_OF_DAY) + 7;
 			// int endHour=event.getEndTime().get(Calendar.HOUR_OF_DAY)+7;
 			int theMonth = event.getStartTime().get(Calendar.MONTH) + 1;
+			
 			int theDay = event.getStartTime().get(Calendar.DAY_OF_MONTH);
 			int theYear = event.getStartTime().get(Calendar.YEAR);
-			String selectedDate = theYear + "-" + theMonth + "-" + theDay + " "
-					+ startHour + ":00:00";
+			if(theDay<10){
+				dayAdded0="0";
+			}
+			if(theMonth<10){
+				monthAdded0="0";
+			}
+			String selectedDate = dayAdded0+theDay + "-" + monthAdded0+theMonth + "-" + theYear + " "
+					+ startHour + ":00";
 			tvSelectedTime.setText(selectedDate);
 		}
 

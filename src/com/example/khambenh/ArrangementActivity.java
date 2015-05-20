@@ -18,15 +18,15 @@ public class ArrangementActivity extends Activity {
 		NetworkInfo nf = cn.getActiveNetworkInfo();
 		FragmentManager fragmentManager = getFragmentManager();
 		FragmentTransaction ft = fragmentManager.beginTransaction();
-		if (nf != null && nf.isConnected() == true) {
+		//if (nf != null && nf.isConnected() == true) {
 			DataFragment dataFragment = new DataFragment();
 			ft.replace(R.id.content_frame, dataFragment);
 			ft.commit();
-		} else {
+		/*} else {
 			ErrorFragment errorFragment = new ErrorFragment();
 			ft.replace(R.id.content_frame, errorFragment);
 			ft.commit();
-		}
+		}*/
 	}
 
 	@Override

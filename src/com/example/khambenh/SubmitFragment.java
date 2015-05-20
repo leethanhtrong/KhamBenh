@@ -75,7 +75,7 @@ public class SubmitFragment extends Fragment {
 		btnSubmit.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				RequestParams params = new RequestParams();
+				/*RequestParams params = new RequestParams();
 				params.put("MaBS", MaBS);
 				params.put("NgayGio", Time);
 				params.put("Email", Email);
@@ -122,28 +122,49 @@ public class SubmitFragment extends Fragment {
 											Toast.LENGTH_SHORT).show();
 								}
 							}
-						});
+						});*/
 				Calendar calendar = Calendar.getInstance();
+				
 				calendar.set(Calendar.MONTH,
-						Integer.parseInt(Time.substring(5, 6)));
+						Integer.parseInt(Time.substring(3, 5)));
 				calendar.set(Calendar.YEAR,
-						Integer.parseInt(Time.substring(0, 3)));
+						Integer.parseInt(Time.substring(6, 10)));
 				calendar.set(Calendar.DAY_OF_MONTH,
-						Integer.parseInt(Time.substring(8, 9)));
-				calendar.set(Calendar.HOUR_OF_DAY,
-						Integer.parseInt(Time.substring(11, 12)));
+						Integer.parseInt(Time.substring(0, 2))-1);
+				calendar.set(Calendar.HOUR,
+						7);
+				
+				/*if(Time.substring(12, 13).equalsIgnoreCase(":")){
+					calendar.set(Calendar.HOUR,
+							7);
+				}else{
+					calendar.set(Calendar.HOUR,
+							Integer.parseInt(Time.substring(11, 13)));
+				}*/
 				calendar.set(Calendar.MINUTE,
-						Integer.parseInt(Time.substring(14, 15)));
-				calendar.set(Calendar.SECOND, 0);
-				calendar.set(Calendar.AM_PM, Calendar.PM);
-				Intent myIntent = new Intent(getActivity(),
+						0);
+				
+				long when = calendar.getTimeInMillis(); 
+				
+				Toast.makeText(
+						getActivity().getBaseContext(),
+						Long.toString(when),
+						Toast.LENGTH_LONG).show();
+				
+				//Calendar now = Calendar.getInstance();
+/*				Integer dayNow=now.get(Calendar.DAY_OF_MONTH);
+				Integer monthNow=now.get(Calendar.MONTH);
+				Integer yearNow=now.get(Calendar.YEAR);*/
+				//long seconds=calendar.getTimeInMillis()-now.getTimeInMillis();
+				
+				/*Intent myIntent = new Intent(getActivity(),
 						KhamBenhReceiver.class);
 				pendingIntent = PendingIntent.getBroadcast(getActivity(), 0,
 						myIntent, 0);
 				AlarmManager alarmManager = (AlarmManager) (getActivity()
 						.getSystemService(getActivity().ALARM_SERVICE));
 				alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(),
-						pendingIntent);
+						pendingIntent);*/
 			};
 		});
 		accessWebService();
