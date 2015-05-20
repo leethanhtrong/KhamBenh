@@ -33,11 +33,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 public class SubmitFragment extends Fragment {
 	Connect con = new Connect();
@@ -129,6 +124,7 @@ public class SubmitFragment extends Fragment {
 						Integer.parseInt(Time.substring(3, 5)));
 				calendar.set(Calendar.YEAR,
 						Integer.parseInt(Time.substring(6, 10)));
+				//if(Integer.parseInt(Time.substring(3, 5)==calendar.get())
 				calendar.set(Calendar.DAY_OF_MONTH,
 						Integer.parseInt(Time.substring(0, 2))-1);
 				calendar.set(Calendar.HOUR,
@@ -144,12 +140,10 @@ public class SubmitFragment extends Fragment {
 				calendar.set(Calendar.MINUTE,
 						0);
 				
-				long when = calendar.getTimeInMillis(); 
-				
-				Toast.makeText(
+				/*Toast.makeText(
 						getActivity().getBaseContext(),
 						Long.toString(when),
-						Toast.LENGTH_LONG).show();
+						Toast.LENGTH_LONG).show();*/
 				
 				//Calendar now = Calendar.getInstance();
 /*				Integer dayNow=now.get(Calendar.DAY_OF_MONTH);
@@ -157,14 +151,22 @@ public class SubmitFragment extends Fragment {
 				Integer yearNow=now.get(Calendar.YEAR);*/
 				//long seconds=calendar.getTimeInMillis()-now.getTimeInMillis();
 				
-				/*Intent myIntent = new Intent(getActivity(),
+				/*Date today1 = new Date(calendar.getTimeInMillis()); 
+				Calendar test = Calendar.getInstance();  
+				test.setTime(today1);
+				Toast.makeText(
+				getActivity().getBaseContext(),
+				Integer.toString(test.get(calendar.DAY_OF_MONTH)),
+				Toast.LENGTH_LONG).show();*/
+				
+				Intent myIntent = new Intent(getActivity(),
 						KhamBenhReceiver.class);
 				pendingIntent = PendingIntent.getBroadcast(getActivity(), 0,
 						myIntent, 0);
 				AlarmManager alarmManager = (AlarmManager) (getActivity()
 						.getSystemService(getActivity().ALARM_SERVICE));
 				alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(),
-						pendingIntent);*/
+						pendingIntent);
 			};
 		});
 		accessWebService();
