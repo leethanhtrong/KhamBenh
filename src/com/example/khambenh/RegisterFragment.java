@@ -14,7 +14,9 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -178,9 +180,20 @@ public class RegisterFragment extends Fragment {
 		protected void onPostExecute(String result) {
 			super.onPostExecute(result);
 			if (successTag.equalsIgnoreCase("1")) {
+				String timeHour="";
+				if(Time.substring(12, 13).equalsIgnoreCase(":")){
+					timeHour=Time.substring(11, 12);
+				}else{
+					timeHour=Time.substring(11, 13);
+				}
+				
+				String timeMonth=Time.substring(3, 5);
+				String timeYear=Time.substring(6, 10);
+				String timeDay=Time.substring(0, 2);
+						
 				RequestParams params = new RequestParams();
 				params.put("MaBS", MaBS);
-				params.put("NgayGio", Time);
+				params.put("NgayGio", timeYear+"-"+timeMonth+"-"+timeDay+" "+timeHour+":00:00");
 				params.put("Email", Email);
 				params.put("TrieuChung", Symtom);
 				AsyncHttpClient client = new AsyncHttpClient();
@@ -189,35 +202,28 @@ public class RegisterFragment extends Fragment {
 						params, new AsyncHttpResponseHandler() {
 							@Override
 							public void onSuccess(String response) {
-								// Hide Progress Dialog
-								Toast.makeText(getActivity().getBaseContext(),
-										"Thêm cuộc hẹn thành công " + response,
-										Toast.LENGTH_LONG).show();
+								FragmentTransaction ft = getFragmentManager()
+										.beginTransaction();
+								ResultDialog newFragment = new ResultDialog(Time, Email, etName
+										.getText().toString(),response);
+								newFragment.show(ft, "dialog");
 							}
 
-							// When the response returned by REST has Http
-							// response code
-							// other than '200'
 							@Override
 							public void onFailure(int statusCode,
 									Throwable error, String content) {
-								// Hide Progress Dialog
-
-								// When Http response code is '404'
 								if (statusCode == 404) {
 									Toast.makeText(
 											getActivity().getBaseContext(),
 											"Requested resource not found",
 											Toast.LENGTH_SHORT).show();
 								}
-								// When Http response code is '500'
 								else if (statusCode == 500) {
 									Toast.makeText(
 											getActivity().getBaseContext(),
 											"Something went wrong at server end",
 											Toast.LENGTH_SHORT).show();
 								}
-								// When Http response code other than 404, 500
 								else {
 									Toast.makeText(
 											getActivity().getBaseContext(),
@@ -228,30 +234,37 @@ public class RegisterFragment extends Fragment {
 						});
 				Calendar calendar = Calendar.getInstance();
 				calendar.set(Calendar.MONTH,
-						Integer.parseInt(Time.substring(5, 6)));
+						Integer.parseInt(timeMonth));
 				calendar.set(Calendar.YEAR,
-						Integer.parseInt(Time.substring(0, 3)));
+						Integer.parseInt(timeYear));
 				calendar.set(Calendar.DAY_OF_MONTH,
-						Integer.parseInt(Time.substring(8, 9)));
-				calendar.set(Calendar.HOUR_OF_DAY,
-						Integer.parseInt(Time.substring(11, 12)));
-				calendar.set(Calendar.MINUTE,
-						Integer.parseInt(Time.substring(14, 15)));
-				calendar.set(Calendar.SECOND, 0);
-				calendar.set(Calendar.AM_PM, Calendar.PM);
-				Intent myIntent = new Intent(getActivity(),
-						KhamBenhReceiver.class);
-				pendingIntent = PendingIntent.getBroadcast(getActivity(), 0,
-						myIntent, 0);
-				AlarmManager alarmManager = (AlarmManager) (getActivity()
-						.getSystemService(getActivity().ALARM_SERVICE));
-				alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(),
-						pendingIntent);
-				Toast.makeText(getActivity().getBaseContext(),
-						"Thêm mới thành công", Toast.LENGTH_SHORT).show();
-			} else {
-				Toast.makeText(getActivity().getBaseContext(),
-						"Thêm mới thất bại", Toast.LENGTH_LONG).show();
+						Integer.parseInt(timeDay) - 1);
+				calendar.set(Calendar.HOUR, 7);
+				calendar.set(Calendar.MINUTE, 0);
+				
+				Calendar compare = Calendar.getInstance();
+				if(compare.get(Calendar.DAY_OF_MONTH)==Integer.parseInt(timeDay)&&compare.get(Calendar.MONTH)==calendar.get(Calendar.MONTH)&&compare.get(Calendar.YEAR)==calendar.get(Calendar.YEAR)){
+				}else{
+					long when = calendar.getTimeInMillis();
+					Intent intent = new Intent(getActivity(),
+							KhamBenhReceiver.class);
+					PendingIntent pendingIntent = PendingIntent.getBroadcast(
+							getActivity().getBaseContext(), 234324243, intent, 0);
+					AlarmManager alarmManager = (AlarmManager) getActivity()
+							.getSystemService(Context.ALARM_SERVICE);
+					alarmManager.set(AlarmManager.RTC_WAKEUP,
+							System.currentTimeMillis() + when, pendingIntent);
+					
+					
+//					Intent myIntent = new Intent(getActivity(),
+//					KhamBenhReceiver.class);
+//			pendingIntent = PendingIntent.getBroadcast(getActivity(), 0,
+//					myIntent, 0);
+//			AlarmManager alarmManager = (AlarmManager) (getActivity()
+//					.getSystemService(getActivity().ALARM_SERVICE));
+//			alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(),
+//					pendingIntent);
+				}
 			}
 		}
 	}

@@ -156,7 +156,7 @@ public class DataFragment extends Fragment implements
 		mWeekView.setMonthChangeListener(this);
 		mWeekView.setEventLongPressListener(this);
 		//getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)‌​;
-		getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+		getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 		return v;
 	}
 
@@ -410,6 +410,7 @@ public class DataFragment extends Fragment implements
 		if (day.size() > 0) {
 			++countClear;
 		}
+		Calendar checkCurrentDate = Calendar.getInstance();
 		for (int i = 1; i < day.size(); i++) {
 			for (int count = 0; count < 4; count++) {
 				Calendar startTime = Calendar.getInstance();
@@ -433,10 +434,13 @@ public class DataFragment extends Fragment implements
 				endTime.set(Calendar.HOUR_OF_DAY, Integer.parseInt(end.get(i)));
 				endTime.set(Calendar.MINUTE, 0);
 				endTime.set(Calendar.MONTH, newMonth - 1);
-				WeekViewEvent event = new WeekViewEvent(1,
-						getEventTitle(startTime), startTime, endTime);
-				event.setColor(getResources().getColor(R.color.event_color_01));
-				events.add(event);
+				if (!startTime.before(checkCurrentDate)) {
+					WeekViewEvent event = new WeekViewEvent(1,
+							getEventTitle(startTime), startTime, endTime);
+					event.setColor(getResources().getColor(R.color.event_color_01));
+					events.add(event);
+				}
+				
 			}
 		}
 		for (int j = 0; j < cuocHen.size(); j++) {

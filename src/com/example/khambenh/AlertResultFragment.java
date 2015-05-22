@@ -21,7 +21,7 @@ public class AlertResultFragment extends DialogFragment {
 						})
 
 				// Negative Button
-				.setNegativeButton("Thoát",
+				.setNegativeButton("Thoﾃ｡t",
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog,
 									int which) {

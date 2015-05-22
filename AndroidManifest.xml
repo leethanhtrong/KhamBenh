@@ -36,7 +36,8 @@
         </activity>
         <activity
             android:name=".DataFragment"
-            android:label="@string/title_activity_week_view_fragment" >
+            android:label="@string/title_activity_week_view_fragment" 
+            android:windowSoftInputMode="adjustPan">
         </activity>
         <activity
             android:name=".FirstActivity"

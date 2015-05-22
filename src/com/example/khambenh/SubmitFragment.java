@@ -23,6 +23,7 @@ import org.json.JSONObject;
 
 import android.app.AlarmManager;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -35,6 +36,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 public class SubmitFragment extends Fragment {
 	Connect con = new Connect();
@@ -50,8 +55,7 @@ public class SubmitFragment extends Fragment {
 	TextView tvGender;
 	TextView tvAddress;
 	Button btnSubmit;
-	String Email, MaBS, Symtom, Time;
-	private PendingIntent pendingIntent;
+	String Email, MaBS, Symtom, Time, Name;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,68 +76,95 @@ public class SubmitFragment extends Fragment {
 		btnSubmit.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				/*
-				 * RequestParams params = new RequestParams();
-				 * params.put("MaBS", MaBS); params.put("NgayGio", Time);
-				 * params.put("Email", Email); params.put("TrieuChung", Symtom);
-				 * AsyncHttpClient client = new AsyncHttpClient(); client.post(
-				 * "http://minhhunglaw.com/anroidWebservice/khambenh/them",
-				 * params, new AsyncHttpResponseHandler() {
-				 * 
-				 * @Override public void onSuccess(String response) { // Hide
-				 * Progress Dialog
-				 * Toast.makeText(getActivity().getBaseContext(),
-				 * "Thêm cuộc hẹn hành công " + response,
-				 * Toast.LENGTH_LONG).show(); }
-				 * 
-				 * // When the response returned by REST has Http // response
-				 * code // other than '200'
-				 * 
-				 * @Override public void onFailure(int statusCode, Throwable
-				 * error, String content) { // Hide Progress Dialog
-				 * 
-				 * // When Http response code is '404' if (statusCode == 404) {
-				 * Toast.makeText( getActivity().getBaseContext(),
-				 * "Requested resource not found", Toast.LENGTH_SHORT).show(); }
-				 * // When Http response code is '500' else if (statusCode ==
-				 * 500) { Toast.makeText( getActivity().getBaseContext(),
-				 * "Something went wrong at server end",
-				 * Toast.LENGTH_SHORT).show(); } // When Http response code
-				 * other than 404, 500 else { Toast.makeText(
-				 * getActivity().getBaseContext(),
-				 * "Unexpected Error occcured! [Most common Error: Device might not be connected to Internet or remote server is not up and running]"
-				 * , Toast.LENGTH_SHORT).show(); } } });
-				 */
+				String timeHour="";
+				if(Time.substring(12, 13).equalsIgnoreCase(":")){
+					timeHour=Time.substring(11, 12);
+				}else{
+					timeHour=Time.substring(11, 13);
+				}
+				
+				String timeMonth=Time.substring(3, 5);
+				String timeYear=Time.substring(6, 10);
+				String timeDay=Time.substring(0, 2);
+						
+				RequestParams params = new RequestParams();
+				params.put("MaBS", MaBS);
+				params.put("NgayGio", timeYear+"-"+timeMonth+"-"+timeDay+" "+timeHour+":00:00");
+				params.put("Email", Email);
+				params.put("TrieuChung", Symtom);
+				AsyncHttpClient client = new AsyncHttpClient();
+				client.post(
+						"http://minhhunglaw.com/anroidWebservice/khambenh/them",
+						params, new AsyncHttpResponseHandler() {
+							@Override
+							public void onSuccess(String response) {
+								FragmentTransaction ft = getFragmentManager()
+										.beginTransaction();
+								ResultDialog newFragment = new ResultDialog(Time, Email, tvName
+										.getText().toString(),response);
+								newFragment.show(ft, "dialog");
+							}
+
+							@Override
+							public void onFailure(int statusCode,
+									Throwable error, String content) {
+								if (statusCode == 404) {
+									Toast.makeText(
+											getActivity().getBaseContext(),
+											"Requested resource not found",
+											Toast.LENGTH_SHORT).show();
+								}
+								else if (statusCode == 500) {
+									Toast.makeText(
+											getActivity().getBaseContext(),
+											"Something went wrong at server end",
+											Toast.LENGTH_SHORT).show();
+								}
+								else {
+									Toast.makeText(
+											getActivity().getBaseContext(),
+											"Unexpected Error occcured! [Most common Error: Device might not be connected to Internet or remote server is not up and running]",
+											Toast.LENGTH_SHORT).show();
+								}
+							}
+						});
+				
+				//alarm notify
 				Calendar calendar = Calendar.getInstance();
-
 				calendar.set(Calendar.MONTH,
-						Integer.parseInt(Time.substring(3, 5)));
+						Integer.parseInt(timeMonth));
 				calendar.set(Calendar.YEAR,
-						Integer.parseInt(Time.substring(6, 10)));
+						Integer.parseInt(timeYear));
 				calendar.set(Calendar.DAY_OF_MONTH,
-						Integer.parseInt(Time.substring(0, 2)) - 1);
+						Integer.parseInt(timeDay) - 1);
 				calendar.set(Calendar.HOUR, 7);
-
-				/*
-				 * if(Time.substring(12, 13).equalsIgnoreCase(":")){
-				 * calendar.set(Calendar.HOUR, 7); }else{
-				 * calendar.set(Calendar.HOUR,
-				 * Integer.parseInt(Time.substring(11, 13))); }
-				 */
 				calendar.set(Calendar.MINUTE, 0);
+				
+				Calendar compare = Calendar.getInstance();
+				if(compare.get(Calendar.DAY_OF_MONTH)==Integer.parseInt(timeDay)&&compare.get(Calendar.MONTH)==calendar.get(Calendar.MONTH)&&compare.get(Calendar.YEAR)==calendar.get(Calendar.YEAR)){
+				}else{
+					long when = calendar.getTimeInMillis();
+					Intent intent = new Intent(getActivity(),
+							KhamBenhReceiver.class);
+					PendingIntent pendingIntent = PendingIntent.getBroadcast(
+							getActivity().getBaseContext(), 234324243, intent, 0);
+					AlarmManager alarmManager = (AlarmManager) getActivity()
+							.getSystemService(Context.ALARM_SERVICE);
+					alarmManager.set(AlarmManager.RTC_WAKEUP,
+							System.currentTimeMillis() + when, pendingIntent);
+					
+					
+//					Intent myIntent = new Intent(getActivity(),
+//					KhamBenhReceiver.class);
+//			pendingIntent = PendingIntent.getBroadcast(getActivity(), 0,
+//					myIntent, 0);
+//			AlarmManager alarmManager = (AlarmManager) (getActivity()
+//					.getSystemService(getActivity().ALARM_SERVICE));
+//			alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(),
+//					pendingIntent);
+				}
 
-				long when = calendar.getTimeInMillis();
-
-				/*Toast.makeText(getActivity().getBaseContext(),
-						Long.toString(when), Toast.LENGTH_LONG).show();*/
-				Intent intent = new Intent(getActivity(),
-						KhamBenhReceiver.class);
-				PendingIntent pendingIntent = PendingIntent.getBroadcast(
-						getActivity().getBaseContext(), 234324243, intent, 0);
-				AlarmManager alarmManager = (AlarmManager) getActivity()
-						.getSystemService(Context.ALARM_SERVICE);
-				alarmManager.set(AlarmManager.RTC_WAKEUP,
-						System.currentTimeMillis() + (10 * 1000), pendingIntent);
+				
 			};
 		});
 		accessWebService();

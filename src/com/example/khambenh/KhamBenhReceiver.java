@@ -18,7 +18,7 @@ public class KhamBenhReceiver extends BroadcastReceiver {
 
 		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
 				context).setSmallIcon(0).setContentTitle("Thông báo")
-				.setContentText("Bạn có một cuộc hẹn");
+				.setContentText("Bạn có một cuộc hẹn khám bệnh");
 		mBuilder.setContentIntent(contentIntent);
 		mBuilder.setDefaults(Notification.DEFAULT_SOUND);
 		mBuilder.setAutoCancel(true);
