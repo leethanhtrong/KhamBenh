@@ -150,7 +150,6 @@
             android:id="@+id/btnContinute"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             style="@android:style/Widget.Holo.Light.Button.Inset"
             android:text="@string/btnContinute" />
     </LinearLayout>

@@ -14,7 +14,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tvEmail"
-        android:textColor="@android:color/black"
         android:textSize="19sp" />
 
     <EditText
@@ -22,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
-        android:textColor="@android:color/black"
+        style="@android:style/Widget.Holo.Light.EditText"
         android:textSize="19sp" />
 
     <Button
@@ -30,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@android:color/holo_blue_light"
+        style="@android:style/Widget.Holo.Light.Button.Inset"
         android:text="@string/btnCheck" />
 
     <FrameLayout

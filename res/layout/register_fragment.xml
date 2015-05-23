@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/tvRegisterName"
-        android:textColor="@android:color/holo_blue_light"
+        style="@android:style/Widget.Holo.Light.TextView"
+        android:textColor="#000"
         android:textSize="19sp" />
 
     <EditText
@@ -21,14 +22,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:textColor="@android:color/black"
+        style="@android:style/Widget.Holo.Light.EditText"
         android:textSize="25sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/tvRegisterAddress"
-        android:textColor="@android:color/holo_blue_light"
+        style="@android:style/Widget.Holo.Light.TextView"
+        android:textColor="#000"
         android:textSize="19sp" />
 
     <EditText
@@ -36,14 +38,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:textColor="@android:color/black"
+        style="@android:style/Widget.Holo.Light.EditText"
         android:textSize="25sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/tvRegisterPhone"
-        android:textColor="@android:color/holo_blue_light"
+        style="@android:style/Widget.Holo.Light.TextView"
+        android:textColor="#000"
         android:textSize="19sp" />
 
     <EditText
@@ -51,14 +54,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="phone|number"
-        android:textColor="@android:color/black"
+        style="@android:style/Widget.Holo.Light.EditText"
         android:textSize="25sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/tvRegisterBirthDay"
-        android:textColor="@android:color/holo_blue_light"
+        style="@android:style/Widget.Holo.Light.TextView"
+        android:textColor="#000"
         android:textSize="19sp" />
 
     <EditText
@@ -66,27 +70,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:textColor="@android:color/black"
+        style="@android:style/Widget.Holo.Light.EditText"
         android:textSize="19sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/tvRegisterGender"
-        android:textColor="@android:color/holo_blue_light"
+        style="@android:style/Widget.Holo.Light.TextView"
+        android:textColor="#000"
         android:textSize="19sp" />
 
     <Spinner
         android:id="@+id/spRegisterGender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@android:style/Widget.Holo.Light.Spinner"
         android:entries="@array/gender" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/tvRegisterEmail"
-        android:textColor="@android:color/black"
+        style="@android:style/Widget.Holo.Light.TextView"
+        android:textColor="#000"
         android:textSize="19sp"
         android:visibility="gone" />
 
@@ -101,7 +108,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@android:color/holo_blue_dark"
+        style="@android:style/Widget.Holo.Light.Button.Inset"
         android:text="@string/btnRegister" />
 
 </LinearLayout>

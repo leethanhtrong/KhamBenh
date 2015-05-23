@@ -13,77 +13,82 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/tvTTSubmitName"
-        android:textColor="@android:color/holo_blue_light"
+        style="@android:style/Widget.Holo.Light.TextView"
         android:textSize="19sp" />
 
     <TextView
         android:id="@+id/tvSubmitName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
+        style="@android:style/Widget.Holo.Light.TextView"
+        android:textColor="#000"
         android:textSize="25sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/tvTTSubmitAddress"
-        android:textColor="@android:color/holo_blue_light"
+        style="@android:style/Widget.Holo.Light.TextView"
         android:textSize="19sp" />
 
     <TextView
         android:id="@+id/tvSubmitAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
+        style="@android:style/Widget.Holo.Light.TextView"
+        android:textColor="#000"
         android:textSize="25sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/tvTTSubmitPhone"
-        android:textColor="@android:color/holo_blue_light"
+        style="@android:style/Widget.Holo.Light.TextView"
         android:textSize="19sp" />
 
     <TextView
         android:id="@+id/tvSubmitPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
+        style="@android:style/Widget.Holo.Light.TextView"
+        android:textColor="#000"
         android:textSize="25sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/tvTTSubmitBirthDay"
-        android:textColor="@android:color/holo_blue_light"
+        style="@android:style/Widget.Holo.Light.TextView"
         android:textSize="19sp" />
 
     <TextView
         android:id="@+id/tvSubmitBirthDay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
+        style="@android:style/Widget.Holo.Light.TextView"
+        android:textColor="#000"
         android:textSize="25sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/tvTTSubmitGender"
-        android:textColor="@android:color/holo_blue_light"
+        style="@android:style/Widget.Holo.Light.TextView"
         android:textSize="19sp" />
 
     <TextView
         android:id="@+id/tvSubmitGender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
+        style="@android:style/Widget.Holo.Light.TextView"
+        android:textColor="#000"
         android:textSize="25sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/tvTTSubmitEmail"
-        android:textColor="@android:color/holo_blue_light"
+        style="@android:style/Widget.Holo.Light.TextView"
         android:textSize="19sp"
         android:visibility="gone" />
 
@@ -91,7 +96,8 @@
         android:id="@+id/tvSubmitEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
+        style="@android:style/Widget.Holo.Light.TextView"
+        android:textColor="#000"
         android:textSize="25sp"
         android:visibility="gone" />
 
@@ -100,7 +106,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@android:color/holo_blue_dark"
+        style="@android:style/Widget.Holo.Light.Button.Inset"
         android:text="@string/btnSubmit" />
 
 </LinearLayout>
