@@ -20,7 +20,7 @@
         android:id="@+id/tvSubmitName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@android:style/Widget.Holo.Light.TextView"
+        style="@android:style/Widget.Holo.Light.EditText"
         android:textColor="#000"
         android:textSize="25sp" />
 
@@ -35,7 +35,7 @@
         android:id="@+id/tvSubmitAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@android:style/Widget.Holo.Light.TextView"
+        style="@android:style/Widget.Holo.Light.EditText"
         android:textColor="#000"
         android:textSize="25sp" />
 
@@ -50,7 +50,7 @@
         android:id="@+id/tvSubmitPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@android:style/Widget.Holo.Light.TextView"
+        style="@android:style/Widget.Holo.Light.EditText"
         android:textColor="#000"
         android:textSize="25sp" />
 
@@ -65,7 +65,7 @@
         android:id="@+id/tvSubmitBirthDay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@android:style/Widget.Holo.Light.TextView"
+        style="@android:style/Widget.Holo.Light.EditText"
         android:textColor="#000"
         android:textSize="25sp" />
 
@@ -80,7 +80,7 @@
         android:id="@+id/tvSubmitGender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@android:style/Widget.Holo.Light.TextView"
+        style="@android:style/Widget.Holo.Light.EditText"
         android:textColor="#000"
         android:textSize="25sp" />
 
@@ -96,7 +96,7 @@
         android:id="@+id/tvSubmitEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@android:style/Widget.Holo.Light.TextView"
+        style="@android:style/Widget.Holo.Light.EditText"
         android:textColor="#000"
         android:textSize="25sp"
         android:visibility="gone" />
