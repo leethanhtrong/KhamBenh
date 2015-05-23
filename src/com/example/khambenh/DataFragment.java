@@ -380,7 +380,7 @@ public class DataFragment extends Fragment implements
 	@Override
 	public void onEventClick(WeekViewEvent event, RectF eventRect) {
 		if (event.getColor() == getResources().getColor(R.color.event_color_02)) {
-			Toast.makeText(getActivity(), "Full", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(), "Lịch đầy", Toast.LENGTH_SHORT).show();
 		} else {
 			String dayAdded0="",monthAdded0="";
 			int startHour = event.getStartTime().get(Calendar.HOUR_OF_DAY) + 7;

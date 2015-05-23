@@ -32,7 +32,7 @@ public class JsonParseClass {
 			if (method == "POST") {
 				httpClient = new DefaultHttpClient();
 				httpPost = new HttpPost(url);
-				httpPost.setEntity(new UrlEncodedFormEntity(params));
+				httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
 				httpResponse = httpClient.execute(httpPost);
 				httpEntity = httpResponse.getEntity();
 				inputStream = httpEntity.getContent();
@@ -49,7 +49,7 @@ public class JsonParseClass {
 		}
 		try {
 			BufferedReader bufferReader = new BufferedReader(
-					new InputStreamReader(inputStream, "iso-8859-1"), 8);
+					new InputStreamReader(inputStream, "UTF-8"), 8);
 			StringBuilder sb = new StringBuilder();
 			String line = null;
 			while ((line = bufferReader.readLine()) != null) {

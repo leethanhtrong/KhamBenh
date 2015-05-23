@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class KhamBenhReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		Toast.makeText(context, "wake up ", Toast.LENGTH_LONG).show();
+		Toast.makeText(context, "Có cuộc hẹn ", Toast.LENGTH_LONG).show();
 		PendingIntent contentIntent = PendingIntent.getActivity(context, 0,
 				new Intent(context, KhamBenhReceiver.class), 0);
 

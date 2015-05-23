@@ -235,6 +235,12 @@ public class SubmitFragment extends Fragment {
 				tvPhone.setText(jsonChildNode.optString("DienThoai"));
 				tvBirthDay.setText(jsonChildNode.optString("NgaySinh"));
 				tvGender.setText(jsonChildNode.optString("GioiTinh"));
+//				if(jsonChildNode.optString("GioiTinh").equalsIgnoreCase("0")){
+//					tvGender.setText("Nam");
+//				}else{
+//					tvGender.setText("Nữ");
+//				}
+				
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
