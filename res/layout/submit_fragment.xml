@@ -1,112 +1,211 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.khambenh.SubmitFragment" >
+    android:weightSum="12.5" >
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/tvTTSubmitName"
-        style="@android:style/Widget.Holo.Light.TextView"
-        android:textSize="19sp" />
+        android:layout_weight="0.5"
+        android:background="#00C8F8"
+        android:gravity="center"
+        android:padding="0.5dp"
+        android:text="Thông tin khách hàng"
+        android:textColor="#fff"
+        android:textSize="23sp" />
 
-    <TextView
-        android:id="@+id/tvSubmitName"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@android:style/Widget.Holo.Light.EditText"
-        android:textColor="#000"
-        android:textSize="25sp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/tvTTSubmitAddress"
-        style="@android:style/Widget.Holo.Light.TextView"
-        android:textSize="19sp" />
-
-    <TextView
-        android:id="@+id/tvSubmitAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@android:style/Widget.Holo.Light.EditText"
-        android:textColor="#000"
-        android:textSize="25sp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/tvTTSubmitPhone"
-        style="@android:style/Widget.Holo.Light.TextView"
-        android:textSize="19sp" />
-
-    <TextView
-        android:id="@+id/tvSubmitPhone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@android:style/Widget.Holo.Light.EditText"
-        android:textColor="#000"
-        android:textSize="25sp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/tvTTSubmitBirthDay"
-        style="@android:style/Widget.Holo.Light.TextView"
-        android:textSize="19sp" />
-
-    <TextView
-        android:id="@+id/tvSubmitBirthDay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@android:style/Widget.Holo.Light.EditText"
-        android:textColor="#000"
-        android:textSize="25sp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/tvTTSubmitGender"
-        style="@android:style/Widget.Holo.Light.TextView"
-        android:textSize="19sp" />
-
-    <TextView
-        android:id="@+id/tvSubmitGender"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@android:style/Widget.Holo.Light.EditText"
-        android:textColor="#000"
-        android:textSize="25sp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/tvTTSubmitEmail"
-        style="@android:style/Widget.Holo.Light.TextView"
-        android:textSize="19sp"
-        android:visibility="gone" />
-
-    <TextView
-        android:id="@+id/tvSubmitEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@android:style/Widget.Holo.Light.EditText"
-        android:textColor="#000"
-        android:textSize="25sp"
-        android:visibility="gone" />
-
-    <Button
-        android:id="@+id/btnSubmit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_gravity="center"
-        style="@android:style/Widget.Holo.Light.Button.Inset"
-        android:text="@string/btnSubmit" />
+        android:layout_weight="2"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            style="@android:style/Widget.Holo.Light.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/tvTTSubmitName"
+            android:textSize="19sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="       "
+            android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/tvSubmitName"
+            style="@android:style/Widget.Holo.Light.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:textSize="25sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            style="@android:style/Widget.Holo.Light.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/tvTTSubmitAddress"
+            android:textSize="19sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="      "
+            android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/tvSubmitAddress"
+            style="@android:style/Widget.Holo.Light.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:textSize="25sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            style="@android:style/Widget.Holo.Light.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/tvTTSubmitPhone"
+            android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/tvSubmitPhone"
+            style="@android:style/Widget.Holo.Light.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:textSize="25sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            style="@android:style/Widget.Holo.Light.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/tvTTSubmitBirthDay"
+            android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/tvSubmitBirthDay"
+            style="@android:style/Widget.Holo.Light.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:textSize="25sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            style="@android:style/Widget.Holo.Light.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/tvTTSubmitGender"
+            android:textSize="19sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="   "
+            android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/tvSubmitGender"
+            style="@android:style/Widget.Holo.Light.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:textSize="25sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="0"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            style="@android:style/Widget.Holo.Light.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/tvTTSubmitEmail"
+            android:textSize="19sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvSubmitEmail"
+            style="@android:style/Widget.Holo.Light.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:textSize="25sp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:gravity="right|center_vertical"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonstyle"
+            android:minHeight="0dp"
+            android:padding="8dp"
+            android:text="@string/btnSubmit" />
+    </LinearLayout>
 
 </LinearLayout>
