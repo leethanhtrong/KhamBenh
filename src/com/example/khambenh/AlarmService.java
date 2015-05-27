@@ -30,8 +30,8 @@ public class AlarmService extends Service {
 						this.getApplicationContext().NOTIFICATION_SERVICE);
 		Intent in = new Intent(this.getApplicationContext(),
 				ArrangementActivity.class);
-		Notification notification = new Notification(R.drawable.ic_launcher,
-				"This is a test message!", System.currentTimeMillis());
+		Notification notification = new Notification(R.drawable.logo_mtt_background,
+				"Thông báo, bạn có một cuộc hẹn khám bệnh", System.currentTimeMillis());
 		in.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP
 				| Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
@@ -40,7 +40,7 @@ public class AlarmService extends Service {
 				PendingIntent.FLAG_UPDATE_CURRENT);
 		notification.flags |= Notification.FLAG_AUTO_CANCEL;
 		notification.setLatestEventInfo(this.getApplicationContext(),
-				"Th�ng b�o", "This is a test message!",
+				"Thông báo", "bạn có một cuộc hẹn khám bệnh",
 				pendingNotificationIntent);
 		mManager.notify(0, notification);
 	}

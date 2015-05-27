@@ -193,7 +193,7 @@ public class DataFragment extends Fragment implements
 
 			catch (IOException e) {
 				Toast.makeText(getActivity().getBaseContext(),
-						"Error..." + e.toString(), Toast.LENGTH_LONG).show();
+						"Có lỗi..." + e.toString(), Toast.LENGTH_LONG).show();
 			}
 			return answer;
 		}
@@ -211,8 +211,7 @@ public class DataFragment extends Fragment implements
 
 	public void getMajor() {
 		ArrayList<Major> results = new ArrayList<Major>();
-		try {
-			
+		try {			
 			JSONObject jsonResponse = new JSONObject(jsonResult);
 			JSONArray jsonMainNode = jsonResponse.optJSONArray("chuyenkhoa");
 			Major major;
@@ -274,7 +273,7 @@ public class DataFragment extends Fragment implements
 
 			catch (IOException e) {
 				Toast.makeText(getActivity().getBaseContext(),
-						"Error..." + e.toString(), Toast.LENGTH_LONG).show();
+						"Có lỗi..." + e.toString(), Toast.LENGTH_LONG).show();
 			}
 			return answer;
 		}
@@ -434,7 +433,7 @@ public class DataFragment extends Fragment implements
 				endTime.set(Calendar.HOUR_OF_DAY, Integer.parseInt(end.get(i)));
 				endTime.set(Calendar.MINUTE, 0);
 				endTime.set(Calendar.MONTH, newMonth - 1);
-				if (!startTime.before(checkCurrentDate)) {
+				if (startTime.after(checkCurrentDate)) {
 					WeekViewEvent event = new WeekViewEvent(1,
 							getEventTitle(startTime), startTime, endTime);
 					event.setColor(getResources().getColor(R.color.event_color_01));
