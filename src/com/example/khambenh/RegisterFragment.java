@@ -244,7 +244,15 @@ public class RegisterFragment extends Fragment {
 				
 				Calendar compare = Calendar.getInstance();
 				if(compare.get(Calendar.DAY_OF_MONTH)==Integer.parseInt(timeDay)&&compare.get(Calendar.MONTH)==calendar.get(Calendar.MONTH)&&compare.get(Calendar.YEAR)==calendar.get(Calendar.YEAR)){
+					/*Toast.makeText(
+							getActivity().getBaseContext(),
+							"oh shit",
+							Toast.LENGTH_SHORT).show();*/
 				}else{
+					Toast.makeText(
+							getActivity().getBaseContext(),
+							"oh shit",
+							Toast.LENGTH_SHORT).show();
 					long when = calendar.getTimeInMillis();
 					Intent intent = new Intent(getActivity(),
 							KhamBenhReceiver.class);

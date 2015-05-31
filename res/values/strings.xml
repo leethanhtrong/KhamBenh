@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Niềm tin vào y đức</string>
+    <string name="app_name">Đăng Ký Khám Bệnh</string>
     <string name="tvMajor">Chuyên khoa </string>
     <string name="tvDoctor">Bác sĩ</string>
     <string name="tvSymptom">Mô tả triệu chứng</string>
@@ -43,7 +43,7 @@
 
     <string name="title_activity_result">ResultActivity</string>
     <string name="title_activity_week_view_fragment">WeekViewFragment</string>
-    <string name="title_activity_first">FirstActivity</string>
+    <string name="title_activity_first">Đăng Ký Khám Bệnh</string>
     <string name="title_activity_error_fragment">ErrorFragment</string>
 
 </resources>

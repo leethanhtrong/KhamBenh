@@ -224,7 +224,7 @@ public class DataFragment extends Fragment implements
 			}
 		} catch (JSONException e) {
 			Toast.makeText(getActivity().getBaseContext(),
-					"Error" + e.toString(), Toast.LENGTH_SHORT).show();
+					"Error" + e.toString(), Toast.LENGTH_LONG).show();
 		}
 
 		Madapter = new MajorAdapter(getActivity(), results);
@@ -253,6 +253,7 @@ public class DataFragment extends Fragment implements
 			}
 
 			catch (ClientProtocolException e) {
+				
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -303,8 +304,9 @@ public class DataFragment extends Fragment implements
 				results.add(doctor);
 			}
 		} catch (JSONException e) {
+			
 			Toast.makeText(getActivity().getBaseContext(),
-					"Error" + e.toString(), Toast.LENGTH_SHORT).show();
+					"Lỗi: Không có bác sĩ thuộc chuyên khoa trên", Toast.LENGTH_LONG).show();
 		}
 
 		Dadapter = new DoctorAdapter(getActivity(), results);
